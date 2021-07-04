@@ -6,10 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>promise</title>
+    <script src="./promise.js"></script>
 </head>
 
 <body>
     手写promise
 </body>
+<script>
+    let p = new MyPromise((resolve, reject) => {
+        setTimeout(function () {
+            resolve('ok')
+            // reject('error')
+        }, 1000);
+        // console.log('1');
+        // throw '我是抛出的错误'
+    })
+    // console.log(p);
+    p.then(res => {
+        console.log(res);
+    }, rej => {
+        console.log(rej);
+    })
+
+    p.then(res => {
+        alert(res);
+    }, rej => {
+        alert(rej);
+    })
+    console.log(p);
+    // console.log('2');
+</script>
 
 </html>
