@@ -54,21 +54,49 @@ class MyPromise {
         }
     }
 
-    // 实例的then方法
+    // 实例的then方法,返回一个 promise 对象
     then(onResolved, onRejected) {
+        const that = this
         // 根据当前的状态执行对应的回调函数【异步执行】
-        setTimeout(() => {
+        return new MyPromise((resolve, reject) => {
+            // 封装函数
+            function callBack(type) {
+                try {
+                    // 获取回调函数的执行结果
+                    let res = type && type(that.promiseResult)
+                    // 判断结果是否为promise
+                    if (res instanceof MyPromise) {
+                        // 是promise类型的对象
+                        res.then(res => {
+                            resolve(res)
+                        }, err => {
+                            reject(err)
+                        })
+                    } else {
+                        resolve(res)
+                    }
+                } catch (error) {
+                    reject(error)
+                }
+            }
             if (this.promiseState === this._FULFILLED) {
-                onResolved && onResolved(this.promiseResult)
+                callBack(onResolved)
             }
             if (this.promiseState === this._REJECTED) {
-                onRejected && onRejected(this.promiseResult)
+                callBack(onRejected)
             }
             // 判断pending状态，因为一般使用promise是异步调用的
             if (this.promiseState === this._PENDING) {
                 // 保存回调函数
-                this._callbacks.push({ onResolved, onRejected })
+                this._callbacks.push({
+                    onResolved: function () {
+                        callBack(onResolved)
+                    },
+                    onRejected: function () {
+                        callBack(onRejected)
+                    }
+                })
             }
-        }, 0);
+        })
     }
 }

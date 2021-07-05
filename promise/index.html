@@ -22,18 +22,20 @@
         // throw '我是抛出的错误'
     })
     // console.log(p);
-    p.then(res => {
-        console.log(res);
+    const result = p.then(res => {
+        // console.log(res);
+        // return 'oh yeah'
+        return new MyPromise((res, rej) => {
+            rej('err')
+        })
+        // throw 'err'
     }, rej => {
         console.log(rej);
     })
 
-    p.then(res => {
-        alert(res);
-    }, rej => {
-        alert(rej);
-    })
-    console.log(p);
+    console.log(result);
+
+    // console.log(p);
     // console.log('2');
 </script>
 
