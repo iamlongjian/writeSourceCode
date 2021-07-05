@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手写call,apply,bind</title>
+  <!-- <script src="./call.js"></script>
+  <script src="./apply.js"></script> -->
+  <script src="./bind.js"></script>
+</head>
+<body>
+  <h3>call,apply,bind</h3>
+</body>
+<script>
+var a = 'window'
+const obj = {a:'obj'}
+function fn (){
+  console.log(this.a)
+  console.log(...arguments)
+}
+// fn() // 'window'
+
+// fn.call(obj,1,2) // 'obj'
+// fn.myCall(obj,1,2) // 'obj'
+
+// fn.apply(obj,[1,2]) // 'obj'
+// fn.myApply(obj) // 'obj'
+
+// const f = fn.bind(obj,2,3)
+// f()
+const f = fn.myBind(obj,1,2)
+f()
+</script>
+</html>
