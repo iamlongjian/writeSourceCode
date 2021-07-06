@@ -57,13 +57,21 @@ class MyPromise {
     // 实例的then方法,返回一个 promise 对象
     then(onResolved, onRejected) {
         const that = this
+        if (typeof onRejected !== 'function') {
+            onRejected = reason => {
+                throw reason
+            }
+        }
+        if (typeof onResolved !== 'function') {
+            onResolved = value => value
+        }
         // 根据当前的状态执行对应的回调函数【异步执行】
         return new MyPromise((resolve, reject) => {
             // 封装函数
             function callBack(type) {
                 try {
                     // 获取回调函数的执行结果
-                    let res = type && type(that.promiseResult)
+                    let res = type(that.promiseResult)
                     // 判断结果是否为promise
                     if (res instanceof MyPromise) {
                         // 是promise类型的对象
@@ -98,5 +106,9 @@ class MyPromise {
                 })
             }
         })
+    }
+
+    catch(onRejected) {
+        return this.then(undefined, onRejected)
     }
 }
