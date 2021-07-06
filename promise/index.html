@@ -13,14 +13,14 @@
     手写promise
 </body>
 <script>
-    let p = new MyPromise((resolve, reject) => {
-        setTimeout(function () {
-            resolve('ok')
+    // let p = new MyPromise((resolve, reject) => {
+    //     setTimeout(function () {
+    //         resolve('ok')
             // reject('error')
-        }, 500);
+        // }, 500);
         // console.log('1');
         // throw '我是抛出的错误'
-    })
+    // })
     // console.log(p);
     // const result = p.then(res => {
     //     // console.log(res);
@@ -32,13 +32,13 @@
     // }, rej => {
     //     console.log(rej);
     // })
-    const result = p.then().then(res => {
-        console.log(222);
-    }).then(res => {
-        console.log(333);
-    }).catch(err =>
-        console.warn(err)
-    )
+    // const result = p.then().then(res => {
+    //     console.log(222);
+    // }).then(res => {
+    //     console.log(333);
+    // }).catch(err =>
+    //     console.warn(err)
+    // )
     // p.catch(err => {
     //     console.log(err);
     // })
@@ -47,6 +47,46 @@
 
     // console.log(p);
     // console.log('2');
+</script>
+<script>
+    // 静态方法
+
+    // MyPromise.resolve('ok')
+    // MyPromise.reject('err')
+
+
+    // MyPromise.all
+    // let p1 = new MyPromise(resolve => setTimeout(() => {
+    //     resolve('ok')
+    // }, 1000))
+    // let p2 = MyPromise.reject('错误')
+    // let p3 = MyPromise.resolve('oh Yeah')
+
+    // const p = MyPromise.all([p1, p2, p3])
+    // console.log(p);
+
+
+    // MyPromise.race
+    // let p1 = new MyPromise(resolve => setTimeout(() => {
+    //     resolve('ok')
+    // }, 200))
+    // let p2 = new MyPromise((resolve, reject) => setTimeout(() => {
+    //     reject('错误了')
+    // }, 0))
+    // let p3 = MyPromise.resolve('oh Yeah')
+    // const p = MyPromise.race([p1, p2, p3])
+    // console.log(p);
+
+    // then的异步执行
+    let p1 = new MyPromise(resolve => {
+        console.log(111);
+        resolve('ok')
+    })
+
+    p1.then(res => {
+        console.log(222);
+    })
+    console.log(333);
 </script>
 
 </html>
