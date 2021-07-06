@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>settimeout</title>
+</head>
+<body>
+  <input type="text" id="input-box">
+</body>
+<script>
+// keypress事件会在浏览器接收文本之前触发。所以需要用setTimeout(fn,0)。
+document.getElementById('input-box').onkeydown = function (event) {
+  // setTimeout(() => {
+    const value = event.target.value.toUpperCase();
+    console.log(value)
+  // }, 0);
+}
+</script>
+</html>
