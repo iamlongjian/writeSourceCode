@@ -11,11 +11,22 @@
 </body>
 <script>
 // keypress事件会在浏览器接收文本之前触发。所以需要用setTimeout(fn,0)。
-document.getElementById('input-box').onkeydown = function (event) {
-  // setTimeout(() => {
-    const value = event.target.value.toUpperCase();
-    console.log(value)
-  // }, 0);
+// document.getElementById('input-box').onkeydown = function (event) {
+//   // setTimeout(() => {
+//     const value = event.target.value.toUpperCase();
+//     console.log(value)
+//   // }, 0);
+// }
+
+// 装逼时刻
+console.log(1)
+
+async function fn(){
+  console.log(4)
+  await Promise.resolve('err')
+  console.log(2)
 }
+fn()
+console.log(3)
 </script>
 </html>
