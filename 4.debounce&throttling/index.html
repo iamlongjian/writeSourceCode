@@ -6,10 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>防抖和节流</title>
+    <style>
+        body {
+            height: 3000px
+        }
+    </style>
 </head>
 
 <body>
-
+    <input type="text" id="inp">
 </body>
+<script src="./throttling.js"></script>
+<script src="./debounce.js"></script>
+<script>
+    // window.onscroll = throttle(function () {
+    //     console.log('1');
+    // }, 500)
+    document.getElementById('inp').onkeydown = debounce(function (e) {
+        console.log(e.keyCode);
+    }, 1000)
+</script>
 
 </html>
